@@ -1,5 +1,12 @@
+<?php
+// Incluir el archivo del controlador que genera el número de orden
+include '../Controller/AdmisionesRegistro.php';
 
-
+// Asegúrate de que $nroo_c tiene un valor
+if (!isset($nroo_c) || empty($nroo_c)) {
+    $nroo_c = 'A0000001'; // Valor predeterminado si no se genera correctamente
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +19,11 @@
     <form class="form-admisiones" action="../Controller/AdmisionesRegistro.php" method="POST">
         <h1 class="titulo-admisiones">Formulario de Registro</h1>
 
-         <!-- Grupo: Nro. de Orden, Estado, Fecha, Hora -->
-         <div class="form-row">
+        <!-- Grupo: Nro. de Orden, Estado, Fecha, Hora -->
+        <div class="form-row">
             <div class="form-group-admisiones">
                 <label for="nroOrden">Nro. de Orden:</label>
-                <input type="text" id="nroOrden" name="nroOrden" value="A0000003" readonly>
+                <input type="text" id="nroOrden" name="nroo_c" value="<?php echo htmlspecialchars($nroo_c); ?>" readonly>
             </div>
             <div class="form-group-admisiones">
                 <label for="estado">Estado:</label>
@@ -24,11 +31,11 @@
             </div>
             <div class="form-group-admisiones">
                 <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" value="2024-11-18">
+                <input type="date" id="fecha" name="fecha">
             </div>
             <div class="form-group-admisiones">
                 <label for="hora">Hora:</label>
-                <input type="time" id="hora" name="hora" value="17:45:52">
+                <input type="time" id="hora" name="hora">
             </div>
         </div>
 
@@ -114,6 +121,7 @@
                 </div>
             </div>
         </div>
+
         <table class="table-admisiones">
             <thead>
                 <tr>
@@ -159,7 +167,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Botones -->
         <div class="buttons-admisiones">
             <button type="submit" class="btn-admisiones">Guardar</button>
@@ -167,5 +174,6 @@
             <button type="button" class="btn-admisiones">Regresar</button>
         </div>
     </form>
+    <script src="../js/RegistroAdmin.js"></script>
 </body>
 </html>
