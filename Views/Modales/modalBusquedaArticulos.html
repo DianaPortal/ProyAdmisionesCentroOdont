@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Códigos de Artículos</title>
+    <link rel="stylesheet" href="../Modales/modales.css">
+</head>
+<body>
+    <button id="openModalBtn">Abrir Modal</button>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>BÚSQUEDA DE CÓDIGOS DE ARTÍCULOS</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="busquedaPor">Búsqueda por:</label>
+                        <input type="radio" id="busquedaCodigo" name="busquedaPor" value="codigo">
+                        <label for="busquedaCodigo">Código</label>
+                        <input type="radio" id="busquedaDescripcion" name="busquedaPor" value="descripcion">
+                        <label for="busquedaDescripcion">Descripción</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="codigo">Código:</label>
+                        <input type="text" id="codigo" name="codigo">
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <input type="text" id="descripcion" name="descripcion">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn-search">BUSCAR</button>
+                        <button type="button" class="btn-cancel">CANCELAR</button>
+                    </div>
+                </form>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Descripción</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ODO-010</td>
+                                <td>BLANQUEAMIENTO EXTERNO</td>
+                                <td><button class="btn-add">+</button></td>
+                            </tr>
+                            <tr>
+                                <td>ODO-011</td>
+                                <td>BLANQUEAMIENTO INTERNO SESION 1</td>
+                                <td><button class="btn-add">+</button></td>
+                            </tr>
+                            <tr>
+                                <td>ODO-012</td>
+                                <td>BLANQUEAMIENTO INTERNO SESION 2</td>
+                                <td><button class="btn-add">+</button></td>
+                            </tr>
+                            <tr>
+                                <td>ODO-014</td>
+                                <td>CEMENTACIÓN DE PROVISIONAL</td>
+                                <td><button class="btn-add">+</button></td>
+                            </tr>
+                            <tr>
+                                <td>ODO-002</td>
+                                <td>DESTARTRE + PROFIAXIS TIPO 1</td>
+                                <td><button class="btn-add">+</button></td>
+                            </tr>
+                            <tr>
+                                <td>ODO-003</td>
+                                <td>DESTARTRE + PROFIAXIS TIPO 2</td>
+                                <td><button class="btn-add">+</button></td>
+                            </tr>
+                            <tr>
+                                <td>ODO-004</td>
+                                <td>DESTARTRE + PROFIAXIS TIPO 3</td>
+                                <td><button class="btn-add">+</button></td>
+                            </tr>
+                            <tr>
+                                <td>ODO-005</td>
+                                <td>EVALUACIÓN</td>
+                                <td><button class="btn-add">+</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Modales/datospaciente.js"></script>
+</body>
+</html>

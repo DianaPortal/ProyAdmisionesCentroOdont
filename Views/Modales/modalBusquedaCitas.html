@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Citas</title>
+    <link rel="stylesheet" href="../Modales/modales.css">
+</head>
+<body>
+    <button id="openModalBtn">Abrir Modal</button>
+
+     <!-- Modal -->
+     <div id="modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Búsqueda de citas</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" value="2024-11-18">
+                    </div>
+                    <div class="form-row">
+                        <div class="grupos-busqueda">
+                            <!-- Búsqueda de médicos -->
+                            <div class="busqueda-medicos">
+                                <label>Búsqueda de médicos:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="busquedaMedicos" value="todos" checked> Todos</label>
+                                    <label><input type="radio" name="busquedaMedicos" value="unMedico"> Un médico</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="codigoMedico">Código médico:</label>
+                                    <input type="text" id="codigoMedico" name="codigoMedico">
+                                </div>
+                                <div class="form-group">
+                                    <label for="especialidad">Especialidad:</label>
+                                    <input type="text" id="especialidad" name="especialidad">
+                                </div>
+                            </div>
+                        
+                            <!-- Búsqueda de pacientes -->
+                            <div class="busqueda-pacientes">
+                                <label>Búsqueda de pacientes:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="busquedaPacientes" value="todos" checked> Todos</label>
+                                    <label><input type="radio" name="busquedaPacientes" value="apellidosNombres"> Apellidos y nombres</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellidosNombres">Apellidos y nombres:</label>
+                                    <input type="text" id="apellidosNombres" name="apellidosNombres">
+                                </div>
+                            </div>
+                        </div>
+                        
+                </form>
+                <!-- Tabla -->
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Dia</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Médico</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>LUN</td>
+                                <td>23/01/2023</td>
+                                <td>17:00</td>
+                                <td>ABAD CORREA EDUARDO</td>
+                                <td>PENDIENTE</td>
+                            </tr>
+                            <tr>
+                                <td>VIE</td>
+                                <td>20/01/2023</td>
+                                <td>17:00</td>
+                                <td>VELASQUEZ RAMIREZ HERNAN</td>
+                                <td>PENDIENTE</td>
+                            </tr>
+                            <tr>
+                                <td>MIE</td>
+                                <td>28/12/2022</td>
+                                <td>11:00</td>
+                                <td>ARANIBAR GUZMAN JOSE</td>
+                                <td>PENDIENTE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-accept">Seleccionar</button>
+                <button class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../Modales/datospaciente.js"></script>
+</body>
+</html>

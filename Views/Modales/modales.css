@@ -1,0 +1,195 @@
+/* General Body and Modal styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+button {
+    cursor: pointer;
+}
+
+#openModalBtn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Modal General */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-large {
+    max-width: 900px; /* Ancho extendido para este modal */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #ff4d4d;
+    transform: scale(1.2);
+}
+
+.modal-body {
+    margin: 20px 0;
+}
+
+/* Específico para la sección de grupos */
+.grupos-busqueda {
+    display: flex; /* Alineación horizontal */
+    justify-content: space-between; /* Espaciado entre los grupos */
+    gap: 20px; /* Espaciado entre los grupos */
+    margin-bottom: 20px;
+}
+
+.busqueda-medicos, .busqueda-pacientes {
+    flex: 1; /* Ambos grupos ocupan el mismo espacio */
+}
+
+.busqueda-medicos .form-group,
+.busqueda-pacientes .form-group {
+    display: flex;
+    flex-direction: column; /* Campos alineados verticalmente */
+    gap: 10px;
+}
+
+.busqueda-medicos .form-group label,
+.busqueda-pacientes .form-group label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.busqueda-medicos .form-group input,
+.busqueda-pacientes .form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Radio Group */
+.radio-group {
+    display: flex;
+    gap: 15px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Tabla */
+.table-container {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Botones */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-accept, .btn-cancel {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-accept {
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-accept:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
