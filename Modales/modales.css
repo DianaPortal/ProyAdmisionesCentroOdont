@@ -20,11 +20,13 @@ button {
     color: #fff;
     border: none;
     border-radius: 4px;
+    font-size: 14px;
+    z-index: 9999;
 }
 
 /* Modal General */
 .modal {
-    display: none;
+    display: none; /* Por defecto, oculto */
     position: fixed;
     top: 0;
     left: 0;
@@ -33,12 +35,14 @@ button {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 9999; /* Asegura que esté por encima de otros elementos */
 }
+
 
 .modal-content {
     background-color: #fff;
     width: 90%;
-    max-width: 600px;
+    max-width: 800px; /* Tamaño ajustado según el contenido */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -54,12 +58,13 @@ button {
     align-items: center;
     background-color: #007bff;
     color: #fff;
-    padding: 10px;
+    padding: 15px 20px;
     border-radius: 8px 8px 0 0;
 }
 
 .modal-header h2 {
     margin: 0;
+    font-size: 18px;
 }
 
 .close-modal {
@@ -80,53 +85,95 @@ button {
     margin: 20px 0;
 }
 
-/* Específico para la sección de grupos */
-.grupos-busqueda {
+/* Formulario */
+.form-group {
     display: flex; /* Alineación horizontal */
-    justify-content: space-between; /* Espaciado entre los grupos */
-    gap: 20px; /* Espaciado entre los grupos */
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px; /* Espaciado entre el label y el input */
 }
 
-.busqueda-medicos, .busqueda-pacientes {
-    flex: 1; /* Ambos grupos ocupan el mismo espacio */
-}
-
-.busqueda-medicos .form-group,
-.busqueda-pacientes .form-group {
-    display: flex;
-    flex-direction: column; /* Campos alineados verticalmente */
-    gap: 10px;
-}
-
-.busqueda-medicos .form-group label,
-.busqueda-pacientes .form-group label {
+.form-group label {
     font-size: 14px;
     font-weight: bold;
+    width: 30%; /* Controla el ancho del label */
+    text-align: right; /* Alinea el texto del label a la derecha */
 }
 
-.busqueda-medicos .form-group input,
-.busqueda-pacientes .form-group input {
-    padding: 8px;
+.form-group input {
+    flex: 1; /* El input ocupa el resto del espacio */
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%;
+    font-size: 14px;
+    width: 100%; /* Asegura que sea responsivo */
 }
 
-/* Radio Group */
-.radio-group {
+input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Radio Buttons Verticales para "Estado de Orden" */
+.radio-group.estado-pedido {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
-.radio-group label {
+.radio-group.estado-pedido label {
     display: flex;
     align-items: center;
     font-size: 14px;
+    gap: 5px;
 }
 
-.radio-group input[type="radio"] {
-    margin-right: 5px;
+/* Botones */
+button, .btn-accept, .btn-cancel, .btn-search, .btn-save, .btn-back, .small-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-accept, .btn-search, .btn-save {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-cancel, .btn-back {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.small-btn {
+    background-color: #17a2b8;
+    color: #fff;
+    font-size: 12px;
+    padding: 8px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.btn-accept:hover, .btn-search:hover, .btn-save:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancel:hover, .btn-back:hover {
+    background-color: #5a6268;
+}
+
+.small-btn:hover {
+    background-color: #117a8b;
 }
 
 /* Tabla */
@@ -159,37 +206,9 @@ button {
     background-color: #f2f2f2;
 }
 
-/* Botones */
+/* Footer del Modal */
 .modal-footer {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-}
-
-.btn-accept, .btn-cancel {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.btn-accept {
-    background-color: #007bff;
-    color: white;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.btn-cancel {
-    background-color: #6c757d;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-.btn-accept:hover {
-    background-color: #0056b3;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.btn-cancel:hover {
-    background-color: #5a6268;
 }

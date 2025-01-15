@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="../Modales/modales.css">
 </head>
 <body>
-    <button id="openModalBtn">Abrir Modal</button>
+    
 
-    <!-- Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>REGISTRO DE ARTÍCULOS DE PEDIDO</h2>
-                <button class="close-modal">&times;</button>
-            </div>
+    <!-- Modal "modalArticulosPedido" -->
+    <div id="modalArticulosPedido" class="modal">
+    <div class="modal-content modal-large">
+        <div class="modal-header">
+            <h2>Registro de Artículos de Pedido</h2>
+            <button class="close-modal">&times;</button>
+        </div>
             <div class="modal-body">
                 <form>
                     <div class="form-group">
@@ -24,8 +24,9 @@
                     </div>
                     <div class="form-group">
                         <label for="codigo">Código:</label>
+                        <button id="btnCodRegArtPed" type="button" class="small-btn">...</button>
                         <input type="text" id="codigo" name="codigo">
-                        <button type="button" class="small-btn">...</button>
+                        
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripción:</label>
@@ -35,8 +36,9 @@
                         <label for="unidadStock">Unidad de stock:</label>
                         <input type="text" id="unidadStock" name="unidadStock">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group">                        
                         <label for="nroSerieLote">Nro. serie/Lote:</label>
+                        <button type="button" class="small-btn"> </button>
                         <input type="text" id="nroSerieLote" name="nroSerieLote">
                     </div>
                     <div class="form-group">
@@ -71,7 +73,8 @@
             </div>
         </div>
     </div>
-
+    <?php include '../Modales/modalBusquedaArticulos.html';?>
     <script src="../Modales/datospaciente.js"></script>
+
 </body>
 </html>

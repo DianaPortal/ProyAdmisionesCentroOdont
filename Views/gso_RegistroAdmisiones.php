@@ -140,8 +140,9 @@ if (!isset($nroo_c) || empty($nroo_c)) {
                 </tr>
             </tbody>
         </table>
+        
+        <button id="btnAgregarArticulo" type="button" class="add-btn-admisiones">Agregar</button>
 
-        <button class="add-btn-admisiones" type="button">Agregar</button>
 
         <div class="section-admisiones">
             <div class="form-row">
@@ -174,6 +175,12 @@ if (!isset($nroo_c) || empty($nroo_c)) {
             <button type="button" class="btn-admisiones">Regresar</button>
         </div>
     </form>
+    <?php include '../Modales/modalArticulosPedido.php'; ?>
+    <?php include '../Modales/modalDatosPaciente.php';?>
+    
+
+
+    <script src="../Modales/datospaciente.js"></script>
     <script src="../js/RegistroAdmin.js"></script>
 </body>
 </html>

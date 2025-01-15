@@ -1,35 +1,86 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Seleccionar el botón que abre el modal
-    const openModalButton = document.getElementById("datosPacienteBtn");
-    // Seleccionar el modal
-    const modal = document.getElementById("modalDatosPaciente");
-    // Validar si los elementos existen
-    if (!openModalButton || !modal) {
-        console.error("Botón o modal no encontrados");
-        return;
+    // Variables para manejar los modales
+    const modalArticulosPedido = document.getElementById("modalArticulosPedido");
+    const modalDatosPaciente = document.getElementById("modalDatosPaciente");
+    const modalBusquedaCitas = document.getElementById("modalBusquedaCitas");
+    const modalBusquedaArticulos = document.getElementById("modalBusquedaArticulos"); // ID del modal de búsqueda de artículos
+
+    const btnAgregarArticulo = document.getElementById("btnAgregarArticulo");
+    const btnDatosPaciente = document.getElementById("datosPacienteBtn");
+    const btnBuscarCita = document.getElementById("buscarCitaBtn");
+    const btnCodRegArtPed = document.getElementById("btnCodRegArtPed"); // Botón de búsqueda de artículos
+
+    const closeModalBtns = document.querySelectorAll(".close-modal");
+
+    // Función para abrir un modal específico
+    function abrirModal(modal) {
+        if (modal) {
+            console.log("Abriendo modal:", modal.id);
+            modal.style.display = "flex"; // Cambia el estilo para hacerlo visible
+        } else {
+            console.error("Modal no encontrado.");
+        }
     }
-    // Seleccionar el botón que cierra el modal
-    const closeModalButton = modal.querySelector(".close-modal");
 
-    if (!closeModalButton) {
-        console.error("Botón de cerrar no encontrado en el modal");
-        return;
+    // Función para cerrar un modal específico
+    function cerrarModal(modal) {
+        if (modal) {
+            console.log("Cerrando modal:", modal.id);
+            modal.style.display = "none"; // Cambia el estilo para ocultarlo
+        } else {
+            console.error("Modal no encontrado.");
+        }
     }
 
-    // Abrir el modal al hacer clic en el botón
-    openModalButton.addEventListener("click", () => {
-        modal.classList.add("active");
-    });
+    // Evento para abrir el modal "Artículos de Pedido"
+    if (btnAgregarArticulo && modalArticulosPedido) {
+        btnAgregarArticulo.addEventListener("click", () => {
+            abrirModal(modalArticulosPedido);
+        });
+    }
 
-    // Cerrar el modal al hacer clic en el botón de cerrar
-    closeModalButton.addEventListener("click", () => {
-        modal.classList.remove("active");
+    // Evento para abrir el modal "Datos del Paciente"
+    if (btnDatosPaciente && modalDatosPaciente) {
+        btnDatosPaciente.addEventListener("click", () => {
+            abrirModal(modalDatosPaciente);
+        });
+    }
+
+    // Evento para abrir el modal "Búsqueda de Citas"
+    if (btnBuscarCita && modalBusquedaCitas) {
+        btnBuscarCita.addEventListener("click", () => {
+            abrirModal(modalBusquedaCitas);
+        });
+    }
+
+    // Evento para abrir el modal "Búsqueda de Artículos"
+    if (btnCodRegArtPed && modalBusquedaArticulos) {
+        btnCodRegArtPed.addEventListener("click", () => {
+            abrirModal(modalBusquedaArticulos);
+        });
+    }
+
+    // Cerrar el modal al hacer clic en el botón de cierre
+    closeModalBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const modal = btn.closest(".modal");
+            cerrarModal(modal);
+        });
     });
 
     // Cerrar el modal al hacer clic fuera del contenido del modal
     window.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            modal.classList.remove("active");
+        if (modalArticulosPedido && event.target === modalArticulosPedido) {
+            cerrarModal(modalArticulosPedido);
+        }
+        if (modalDatosPaciente && event.target === modalDatosPaciente) {
+            cerrarModal(modalDatosPaciente);
+        }
+        if (modalBusquedaCitas && event.target === modalBusquedaCitas) {
+            cerrarModal(modalBusquedaCitas);
+        }
+        if (modalBusquedaArticulos && event.target === modalBusquedaArticulos) {
+            cerrarModal(modalBusquedaArticulos);
         }
     });
 });
