@@ -47,7 +47,10 @@ function disableDateFields() {
 }
 
 // Función para aplicar los filtros y enviar los datos al backend
-function applyFilters() {
+let currentPage = 1; 
+function applyFilters(page = 1) {
+    currentPage = page; // Actualizar la página actual
+
     const filters = {
         p_codcli: document.querySelector('input[name="filter"]:checked')?.value === "ruc"
             ? document.getElementById("searchCode")?.value.trim() || null
@@ -55,29 +58,23 @@ function applyFilters() {
         p_nomcli: document.querySelector('input[name="filter"]:checked')?.value === "razon_social"
             ? document.getElementById("searchRazonSocial")?.value.trim() || null
             : null,
-
-            p_nrooc: document.querySelector('input[name="searchFilter"]:checked')?.value === "number" ||
+        p_nrooc: document.querySelector('input[name="searchFilter"]:checked')?.value === "number" ||
             document.querySelector('input[name="searchFilter"]:checked')?.value === "name"
-      ? document.getElementById("searchNumber")?.value.trim() || null
-      : null,
-  
-
+            ? document.getElementById("searchNumber")?.value.trim() || null
+            : null,
         p_tipest: document.querySelector('input[name="orderStatus"]:checked')?.value === "all"
             ? null
             : document.querySelector('input[name="orderStatus"]:checked')?.value === "pending"
             ? 'P'
             : 'T',
-
         p_fchini: document.querySelector('input[name="dateRange"]:checked')?.value === "range"
             ? document.getElementById("startDate")?.value || null
             : null,
-            
         p_fchfin: document.querySelector('input[name="dateRange"]:checked')?.value === "range"
             ? document.getElementById("endDate")?.value || null
             : null,
+        page: page, // Enviar el número de página
     };
-
-    console.log("Filtros enviados:", filters);
 
     fetch('../Controller/Admisiones.php', {
         method: 'POST',
@@ -108,17 +105,38 @@ function updateTable(data) {
         noDataMessage.style.display = "none";
         data.forEach(row => {
             const tr = document.createElement("tr");
+
+            // Iterar sobre los valores del objeto y crear celdas para los datos
             Object.values(row).forEach(value => {
                 const td = document.createElement("td");
                 td.textContent = value;
                 tr.appendChild(td);
             });
-            tableBody.appendChild(tr);
+
+            // Crear una celda adicional para los botones de acción
+            const actionsTd = document.createElement("td");
+            actionsTd.innerHTML = `
+                <div class="action-buttons">
+                    <button class="edit-btn" onclick="editar(${row.numero})">
+                        <span class="material-icons">edit</span>
+                    </button>
+                    <button class="detail-btn" onclick="verDetalle(${row.numero})">
+                        <span class="material-icons">visibility</span>
+                    </button>
+                    <button class="delete-btn" onclick="eliminar(${row.numero})">
+                        <span class="material-icons">delete</span>
+                    </button>
+                </div>
+            `;
+            tr.appendChild(actionsTd); // Añadir la celda de acciones a la fila
+
+            tableBody.appendChild(tr); // Añadir la fila completa a la tabla
         });
     } else {
         noDataMessage.style.display = "block";
     }
 }
+
 
 // Función para actualizar la paginación
 function updatePagination(pagination) {
@@ -148,4 +166,24 @@ function updatePagination(pagination) {
     nextButton.textContent = "Siguiente";
     nextButton.addEventListener("click", () => applyFilters(currentPage + 1));
     paginationContainer.appendChild(nextButton);
+}
+
+
+
+
+
+
+// Funciones de los botones
+function editar(id) {
+    alert(`Editar registro con ID: ${id}`);
+}
+
+function verDetalle(id) {
+    alert(`Ver detalle del registro con ID: ${id}`);
+}
+
+function eliminar(id) {
+    if (confirm(`¿Estás seguro de eliminar el registro con ID: ${id}?`)) {
+        alert(`Registro con ID ${id} eliminado`);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 // Incluir el archivo del controlador que genera el número de orden
 include '../Controller/AdmisionesRegistro.php';
+include('dashboard.php');
 
 // Asegúrate de que $nroo_c tiene un valor
 if (!isset($nroo_c) || empty($nroo_c)) {
@@ -17,7 +18,7 @@ if (!isset($nroo_c) || empty($nroo_c)) {
 </head>
 <body>
     <form class="form-admisiones" action="../Controller/AdmisionesRegistro.php" method="POST">
-        <h1 class="titulo-admisiones">Formulario de Registro</h1>
+      
 
         <!-- Grupo: Nro. de Orden, Estado, Fecha, Hora -->
         <div class="form-row">
@@ -141,7 +142,7 @@ if (!isset($nroo_c) || empty($nroo_c)) {
             </tbody>
         </table>
         
-        <button id="btnAgregarArticulo" type="button" class="add-btn-admisiones">Agregar</button>
+        <button id="btnAgregarArticulo" type="button" class="add-btn-admisiones"> + Agregar</button>
 
 
         <div class="section-admisiones">
@@ -170,9 +171,9 @@ if (!isset($nroo_c) || empty($nroo_c)) {
         </div>
         <!-- Botones -->
         <div class="buttons-admisiones">
-            <button type="submit" class="btn-admisiones">Guardar</button>
-            <button type="button" class="btn-admisiones">Imprimir</button>
-            <button type="button" class="btn-admisiones">Regresar</button>
+            <button type="submit" class="btn-admisiones">Guardar</button> 
+            <button type="button" class="btn-admisiones">Imprimir</button> 
+            <button type="button" class="btn-admisiones" onclick="window.location.href='gso_ListadoAdmisiones.php'">Regresar</button>
         </div>
     </form>
     <?php include '../Modales/modalArticulosPedido.php'; ?>
@@ -181,6 +182,6 @@ if (!isset($nroo_c) || empty($nroo_c)) {
 
 
     <script src="../Modales/datospaciente.js"></script>
-    <script src="../js/RegistroAdmin.js"></script>
+    <script src="../js/RegistroAdmin.js"></script> <!--formatear Fecha-->
 </body>
 </html>

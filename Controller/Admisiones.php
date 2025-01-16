@@ -63,8 +63,8 @@ try {
     echo json_encode([
         'data' => $resultados,
         'pagination' => [
-            'current_page' => $page,
-            'per_page' => $limit
+            'currentpage' => $page,
+            'perpage' => $limit
         ]
     ]);
 

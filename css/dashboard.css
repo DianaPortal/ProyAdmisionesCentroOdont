@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;    
+    width: 100%;
+    z-index: 1000;
+    height: 56px;
+}
+
+
+.sidebar {
+    height: calc(100vh - 56px); /* Altura ajustada según la barra superior */
+    width: 350px;
+    position: fixed;
+    top: 56px; /* Altura de la barra de navegación */
+    left: 0;
+    background-color: #ccd2d8ad;
+    padding-top: 20px;
+    border-right: 1px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%); /* Oculta la barra lateral */
+}
+
+.main-content {
+    margin-left: 250px;
+    margin-top: 20px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.hidden + .main-content {
+    margin-left: 0;
+}
+
+.sidebar a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar a:hover {
+    background-color: #e9ecef;
+}
+
+.sidebar .section-title {
+    margin: 15px 15px 5px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #000000;
+    text-transform: uppercase;
+    
+}
+
+
+/*justify-content: space-between;
+    align-items: center;*/
+.sidebar .profile {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    
+}
+
+.sidebar .profile .material-icons {
+    font-size: 48px;
+    color: #000000;
+    margin-right: 15px;
+}
+
+.sidebar .profile div {
+    line-height: 1.2;
+}
+
+.sidebar .profile span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sidebar .profile small {
+    font-size: 14px;
+    color: #666;
+}
+
+.material-icons {
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+}
+
+.container-fluid .menu-toggle {
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    
+}
+
+.navbar-text {
+    font-size: 20px;
+}
+
+.navbar-text1{
+    font-size: 14px;
+   
+}
+
+.section-title .material-icons{
+    font-size: 34px;
+    
+    
+}
+
+.d-flex .material-icons{
+    font-size: 40px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%); /* Oculto por defecto en pantallas pequeñas */
+    }
+
+    .sidebar.visible {
+        transform: translateX(0); /* Mostrar sidebar al hacer toggle */
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}

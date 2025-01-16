@@ -1,179 +1,136 @@
 <?php
-// Incluir el archivo del controlador que genera el número de orden
-include '../Controller/AdmisionesRegistro.php';
 
-// Asegúrate de que $nroo_c tiene un valor
-if (!isset($nroo_c) || empty($nroo_c)) {
-    $nroo_c = 'A0000001'; // Valor predeterminado si no se genera correctamente
-}
+include('dashboard.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
-    <link rel="stylesheet" href="../css/registroAdmisiones.css">
+    <title>Admisiones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 </head>
-<body>
-    <form class="form-admisiones" action="../Controller/AdmisionesRegistro.php" method="POST">
-        <h1 class="titulo-admisiones">Formulario de Registro</h1>
+<body class="bg-light">
 
-        <!-- Grupo: Nro. de Orden, Estado, Fecha, Hora -->
-        <div class="form-row">
-            <div class="form-group-admisiones">
-                <label for="nroOrden">Nro. de Orden:</label>
-                <input type="text" id="nroOrden" name="nroo_c" value="<?php echo htmlspecialchars($nroo_c); ?>" readonly>
-            </div>
-            <div class="form-group-admisiones">
-                <label for="estado">Estado:</label>
-                <input type="text" id="estado" name="estado" value="PENDIENTE" readonly>
-            </div>
-            <div class="form-group-admisiones">
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha">
-            </div>
-            <div class="form-group-admisiones">
-                <label for="hora">Hora:</label>
-                <input type="time" id="hora" name="hora">
-            </div>
-        </div>
-
-        <button id="datosPacienteBtn" type="button" class="btn-admisiones">Datos del Paciente / Cita</button>
-
-        <!-- Grupo: Datos del Cliente -->
-        <div class="section-admisiones">
-            <div class="section-title-admisiones">Datos del Cliente</div>
-            <div class="form-row">
-                <div class="form-group-admisiones">
-                    <label for="cliente">Cliente:</label>
-                    <button class="small-btn-admisiones" type="button"></button>
-                    <input type="text" id="codigoCliente" name="codigoCliente" placeholder="Código">
-                    <input type="text" id="nombreCliente" name="nombreCliente" placeholder="Nombre">
+<div class="container py-5">
+    <!-- Encabezado FILTROS -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card p-3 shadow">
+                <!-- FILTRAR POR CLIENTES-->
+                <h4 class="mb-3">Clientes</h4>
+                <div class="mb-2">
+                    <label><input type="radio" name="filter" value="all" checked> Todos</label>
+                    <label class="ms-3"><input type="radio" name="filter" value="ruc" onclick="enableCodeField()"> Por R.U.C</label>
+                    <label class="ms-3"><input type="radio" name="filter" value="razon_social" onclick="enableRazonSocialField()"> Por Razón Social</label>
                 </div>
-                <div class="form-group-admisiones">
-                    <label for="direccion">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" id="telefono" name="telefono">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="paciente">Paciente:</label>
-                    <input type="text" id="paciente" name="paciente">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="docIdentidad">Doc. Identidad:</label>
-                    <input type="text" id="docIdentidad" name="docIdentidad">
+                <div class="input-group">
+                    <input type="text" id="searchCode" class="form-control" placeholder="RUC" disabled>
+                    <input type="text" id="searchRazonSocial" class="form-control ms-2" placeholder="Razón Social" disabled>
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card p-3 shadow">
+            <!-- FILTRAR POR ESTADOS DE ORDENES-->
+            <h4 class="mb-3">Estado de Órdenes</h4>
+                <div class="mb-2">
+                    <label><input type="radio" name="orderStatus" value="pending"> Pendiente</label>
+                    <label class="ms-3"><input type="radio" name="orderStatus" value="completed"> Terminado</label>
+                    <label class="ms-3"><input type="radio" name="orderStatus" value="all" checked> Todos</label>
+                </div>
 
-        <!-- Grupo: Datos del Pago -->
-        <div class="section-admisiones">
-            <div class="section-title-admisiones">Datos del Pago</div>
-            <div class="form-row">
-                <div class="form-group-admisiones">
-                    <label for="tipoPaciente">Tipo de Paciente:</label>
-                    <input type="text" id="tipoPaciente" name="tipoPaciente">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card p-3 shadow">
+                <!-- FILTRAR POR BUSQUEDA GENERAL-->
+            <h4 class="mb-3">Búsqueda</h4>
+                <div class="mb-2">
+                    <label><input type="radio" name="searchFilter" value="all" checked onclick="disableSearchField()"> Todos</label>
+                    <label class="ms-3"><input type="radio" name="searchFilter" value="number" onclick="enableSearchField('number')"> Por Número</label>
+                    <label class="ms-3"><input type="radio" name="searchFilter" value="name" onclick="enableSearchField('name')"> Por Nombre</label>
                 </div>
-                <div class="form-group-admisiones">
-                    <label for="moneda">Moneda:</label>
-                    <button class="small-btn-admisiones" type="button"></button>
-                    <input type="text" id="codigoMoneda" name="codigoMoneda" placeholder="Código">
-                    <input type="text" id="nombreMoneda" name="nombreMoneda" placeholder="Nombre">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="formaPago">Forma de Pago:</label>
-                    <button class="small-btn-admisiones" type="button"></button>
-                    <input type="text" id="codigoFormaPago" name="codigoFormaPago" placeholder="Código">
-                    <input type="text" id="nombreFormaPago" name="nombreFormaPago" placeholder="Nombre">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="comprobantePago">Comprob. Pago:</label>
-                    <input type="text" id="codigoComprobante" name="codigoComprobante" placeholder="Código">
-                    <input type="text" id="nombreComprobante" name="nombreComprobante" placeholder="Nombre">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="responsable">Responsable:</label>
-                    <input type="text" id="responsable" name="responsable">
+                <div class="input-group">
+                    <input type="text" id="searchNumber" class="form-control" placeholder="Número" disabled>
                 </div>
             </div>
         </div>
-
-        <!-- Grupo: Datos del Médico -->
-        <div class="section-admisiones">
-            <div class="section-title-admisiones">Datos del Médico</div>
-            <div class="form-row">
-                <div class="form-group-admisiones">
-                    <label for="medico">Médico:</label>
-                    <input type="text" id="codigoMedico" name="codigoMedico" placeholder="Código">
-                    <input type="text" id="nombreMedico" name="nombreMedico" placeholder="Nombre">
+        <div class="col-md-6">
+            <div class="card p-3 shadow">
+                <!-- FILTRAR POR RANGO DE FECHAS-->
+                <h4 class="mb-3">Rango de Fechas</h4>
+                <div class="mb-2">
+                    <label><input type="radio" name="dateRange" value="all" checked onclick="disableDateFields()"> Todos</label>
+                    <label class="ms-3"><input type="radio" name="dateRange" value="range" onclick="enableDateFields()"> Un rango</label>
                 </div>
-                <div class="form-group-admisiones">
-                    <label for="especialidad">Especialidad:</label>
-                    <input type="text" id="especialidad" name="especialidad">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="fechaHora">Fecha / Hora:</label>
-                    <input type="text" id="fechaHora" name="fechaHora">
+                <div class="input-group mb-3">
+                    <input type="date" id="startDate" class="form-control" placeholder="Fecha de inicio" disabled>
+                    <input type="date" id="endDate" class="form-control ms-2" placeholder="Fecha de fin" disabled>
                 </div>
             </div>
         </div>
+    </div>
 
-        <table class="table-admisiones">
-            <thead>
-                <tr>
-                    <th>Ítem</th>
-                    <th>Código</th>
-                    <th>Descripción</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Total</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="7">Aún no hay registros.</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <button class="add-btn-admisiones" type="button">Agregar</button>
-
-        <div class="section-admisiones">
-            <div class="form-row">
-                <div class="form-group-admisiones">
-                    <label for="gastosAdicionales">Gastos Adicionales:</label>
-                    <input type="text" id="gastosAdicionales" name="gastosAdicionales">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="valorVenta">Valor de Venta S/:</label>
-                    <input type="text" id="valorVenta" name="valorVenta">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="igv">% I.G.V.:</label>
-                    <input type="text" id="igv" name="igv">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="total">Total S/:</label>
-                    <input type="text" id="total" name="total">
-                </div>
-                <div class="form-group-admisiones">
-                    <label for="copagos">Copagos S/:</label>
-                    <input type="text" id="copagos" name="copagos">
-                </div>
-            </div>
+    <!-- BTN BUSCAR-->
+    <div class="row mb-4">
+        <div class="col text-end">
+            <button class="btn btn-sm btn-primary" onclick="applyFilters()">Buscar</button>
         </div>
-        <!-- Botones -->
-        <div class="buttons-admisiones">
-            <button type="submit" class="btn-admisiones">Guardar</button>
-            <button type="button" class="btn-admisiones">Imprimir</button>
-            <button type="button" class="btn-admisiones">Regresar</button>
+    </div>
+
+    <!-- Grilla -->
+    <div class="card p-3 shadow mb-4">
+        
+        <div class="table-responsive">
+            <table id="dataTable" class="table table-bordered table-striped ">
+                <thead class="table-dark">
+                    <tr id="tableHeader">
+                        <th>Número</th>
+                        <th>Fecha</th>
+                        <th>T. Doc</th>
+                        <th>Nro. Doc</th>
+                        <th>Paciente</th>
+                        <th>Cliente</th>
+                        <th>Moneda</th>
+                        <th>Importe</th>
+                        <th>Estado</th>
+                        <th>Fecha Cita</th>
+                        <th>Hora Cita</th>
+                        <th>Médico</th>
+                        <th>Especialidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+               
+                    <!-- Filas dinámicas -->
+                </tbody>
+            </table>
         </div>
-    </form>
-    <script src="../js/RegistroAdmin.js"></script>
+        <p id="noDataMessage" class="text-center text-danger" style="display: none;">No se encontraron datos.</p>
+    </div>
+
+    <!-- btn agregar-->
+    <button id="btnAgregarAdm" type="button" class="add-btn-AgregarAdm" onclick="window.location.href='gso_RegistroAdmisiones.php'">Agregar</button>
+    <!-- Contenedor de paginación -->
+  
+    <div id="paginationContainer" class="pagination-container d-flex justify-content-center"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/Java_Admi.js"></script>
+
+
 </body>
 </html>
+

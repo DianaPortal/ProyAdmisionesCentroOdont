@@ -17,26 +17,35 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
-                        <label for="fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha" value="2024-11-18">
+                    <div class="form-group d-flex justify-content-between">
+                        <div></div> <!-- Espacio vacío a la izquierda -->
+                        <span id="fechacita" class="text-right"></span>
                     </div>
+                    
+                    
+                      <!-- Filtros -->
+                <form>
                     <div class="form-row">
                         <div class="grupos-busqueda">
+
                             <!-- Búsqueda de médicos -->
                             <div class="busqueda-medicos">
                                 <label>Búsqueda de médicos:</label>
                                 <div class="radio-group">
-                                    <label><input type="radio" name="busquedaMedicos" value="todos" checked> Todos</label>
-                                    <label><input type="radio" name="busquedaMedicos" value="unMedico"> Un médico</label>
+                                    <label>
+                                        <input type="radio" name="busquedaMedicos" value="todos" checked onclick="disableMedicoFields()"> Todos
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="busquedaMedicos" value="unMedico" onclick="enableMedicoFields()"> Un médico
+                                    </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="codigoMedico">Código médico:</label>
-                                    <input type="text" id="codigoMedico" name="codigoMedico">
+                                    <input type="text" id="codigoMedico" name="codigoMedico" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="especialidad">Especialidad:</label>
-                                    <input type="text" id="especialidad" name="especialidad">
+                                    <input type="text" id="especialidad" name="especialidad" disabled>
                                 </div>
                             </div>
                         
@@ -44,62 +53,48 @@
                             <div class="busqueda-pacientes">
                                 <label>Búsqueda de pacientes:</label>
                                 <div class="radio-group">
-                                    <label><input type="radio" name="busquedaPacientes" value="todos" checked> Todos</label>
-                                    <label><input type="radio" name="busquedaPacientes" value="apellidosNombres"> Apellidos y nombres</label>
+                                    <label>
+                                        <input type="radio" name="busquedaPacientes" value="todos" checked onclick="disablePacienteFields()"> Todos
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="busquedaPacientes" value="apellidosNombres" onclick="enablePacienteFields()"> Apellidos y nombres
+                                    </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="apellidosNombres">Apellidos y nombres:</label>
-                                    <input type="text" id="apellidosNombres" name="apellidosNombres">
+                                    <input type="text" id="apellidosNombres" name="apellidosNombres" disabled>
                                 </div>
                             </div>
                         </div>
-                        
+                    </div>
                 </form>
+              
                 <!-- Tabla -->
                 <div class="table-container">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Dia</th>
+                                <th>Día</th>
                                 <th>Fecha</th>
                                 <th>Hora</th>
                                 <th>Médico</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>LUN</td>
-                                <td>23/01/2023</td>
-                                <td>17:00</td>
-                                <td>ABAD CORREA EDUARDO</td>
-                                <td>PENDIENTE</td>
-                            </tr>
-                            <tr>
-                                <td>VIE</td>
-                                <td>20/01/2023</td>
-                                <td>17:00</td>
-                                <td>VELASQUEZ RAMIREZ HERNAN</td>
-                                <td>PENDIENTE</td>
-                            </tr>
-                            <tr>
-                                <td>MIE</td>
-                                <td>28/12/2022</td>
-                                <td>11:00</td>
-                                <td>ARANIBAR GUZMAN JOSE</td>
-                                <td>PENDIENTE</td>
-                            </tr>
+                        <tbody id="tableBody">
+                            <!-- Filas dinámicas -->
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-accept">Seleccionar</button>
-                <button class="btn-cancel">Cancelar</button>
+                <button class="btn-accept" onclick="selectRow()">Seleccionar</button>
+                <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
             </div>
         </div>
     </div>
-
+    <script src="../js/buscarCita.js"></script>    
+    <script src="../js/fecha.js"></script> 
 
     <script src="../Modales/datospaciente.js"></script>
 </body>
