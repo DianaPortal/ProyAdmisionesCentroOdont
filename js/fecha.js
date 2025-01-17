@@ -19,12 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fechaInput) {
         // Establecer la fecha en el input
         const defaultDate = getDefaultDate();
-        fechaInput.value = defaultDate;
-
-        // Mostrar la fecha en formato DD/MM/YYYY al lado o en otro lugar
-        const fechaDisplay = document.createElement('span');
-        fechaDisplay.id = "fechaDisplay";
-        fechaDisplay.textContent = `Fecha: ${formatDateToDisplay(defaultDate)}`;
-        fechaInput.insertAdjacentElement('afterend', fechaDisplay);
+        fechaInput.textContent = formatDateToDisplay(defaultDate);
     }
 });

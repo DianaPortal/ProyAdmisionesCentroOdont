@@ -18,7 +18,7 @@ if (!isset($nroo_c) || empty($nroo_c)) {
 </head>
 <body>
     <form class="form-admisiones" action="../Controller/AdmisionesRegistro.php" method="POST">
-      
+    <input type="hidden" id="accion" name="accion" value="insertar">
 
         <!-- Grupo: Nro. de Orden, Estado, Fecha, Hora -->
         <div class="form-row">
@@ -27,8 +27,8 @@ if (!isset($nroo_c) || empty($nroo_c)) {
                 <input type="text" id="nroOrden" name="nroo_c" value="<?php echo htmlspecialchars($nroo_c); ?>" readonly>
             </div>
             <div class="form-group-admisiones">
-                <label for="estado">Estado:</label>
-                <input type="text" id="estado" name="estado" value="PENDIENTE" readonly>
+            <label for="estfac">Estado:</label>
+            <input type="text" id="estfac" name="estfac" value="<?php echo htmlspecialchars($estadoFactura); ?>" readonly>
             </div>
             <div class="form-group-admisiones">
                 <label for="fecha">Fecha:</label>
@@ -36,8 +36,9 @@ if (!isset($nroo_c) || empty($nroo_c)) {
             </div>
             <div class="form-group-admisiones">
                 <label for="hora">Hora:</label>
-                <input type="time" id="hora" name="hora">
+                <input type="text" id="hora" name="hora" placeholder="HH:MM:SS">
             </div>
+
         </div>
 
         <button id="datosPacienteBtn" type="button" class="btn-admisiones">Datos del Paciente / Cita</button>
@@ -171,7 +172,8 @@ if (!isset($nroo_c) || empty($nroo_c)) {
         </div>
         <!-- Botones -->
         <div class="buttons-admisiones">
-            <button type="submit" class="btn-admisiones">Guardar</button> 
+            <button type="submit" name="submit" class="btn-admisiones">Guardar</button> 
+
             <button type="button" class="btn-admisiones">Imprimir</button> 
             <button type="button" class="btn-admisiones" onclick="window.location.href='gso_ListadoAdmisiones.php'">Regresar</button>
         </div>
@@ -183,5 +185,16 @@ if (!isset($nroo_c) || empty($nroo_c)) {
 
     <script src="../Modales/datospaciente.js"></script>
     <script src="../js/RegistroAdmin.js"></script> <!--formatear Fecha-->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".form-admisiones");
+
+        form.addEventListener("submit", function (event) {
+            // Si necesitas cambiar la acción antes de enviar el formulario, hazlo aquí
+            document.getElementById("accion").value = "insertar"; // O "modificar", "borrar"
+        });
+    });
+</script>
 </body>
 </html>

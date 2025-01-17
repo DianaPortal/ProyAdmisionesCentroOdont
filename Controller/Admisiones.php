@@ -6,14 +6,7 @@ try {
     // Iniciar  una transacción
     $pdo->beginTransaction(); 
 
-    // Variables de entrada --> recibir los datos
-    /*$p_codcli = isset($_POST['p_codcli']) ? $_POST['p_codcli'] : null;
-    $p_nomcli = isset($_POST['p_nomcli']) ? $_POST['p_nomcli'] : null;
-    $p_nrooc = isset($_POST['p_nrooc']) ? $_POST['p_nrooc'] : null;
-    $p_tipest = isset($_POST['p_tipest']) ? $_POST['p_tipest'] : null;
-    $p_fchini = isset($_POST['p_fchini']) ? $_POST['p_fchini'] : null;
-    $p_fchfin = isset($_POST['p_fchfin']) ? $_POST['p_fchfin'] : null;*/
-
+     // Variables de entrada --> recibir los datos
     $input = json_decode(file_get_contents('php://input'), true);
     $p_codcli = isset($input['p_codcli']) ? $input['p_codcli'] : null;
     $p_nomcli = isset($input['p_nomcli']) ? $input['p_nomcli'] : null;

@@ -11,9 +11,6 @@ try {
     $p_especialidad = isset($input['p_especialidad']) ? $input['p_especialidad'] : null;
     $p_sigper = isset($input['p_sigper']) ? $input['p_sigper'] : null;
 
-
-
-
     // Configuración de paginación
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Página actual, por defecto 1
     $limit = 20; // Número de registros por página
@@ -27,6 +24,10 @@ try {
     $stmt->bindParam(':p_codcmp', $p_codcmp, PDO::PARAM_STR);
     $stmt->bindParam(':p_especialidad', $p_especialidad, PDO::PARAM_STR);
     $stmt->bindParam(':p_sigper', $p_sigper, PDO::PARAM_STR);   
+    $stmt->bindParam(':p_limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':p_offset', $offset, PDO::PARAM_INT);
+    $stmt->bindParam(':resultado', $cursor_name, PDO::PARAM_STR);
+    
     $stmt->execute();
 
     // Recuperar los datos del cursor

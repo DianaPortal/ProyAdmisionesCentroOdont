@@ -17,19 +17,26 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group d-flex justify-content-between">
-                        <div></div> <!-- Espacio vacío a la izquierda -->
-                        <span id="fechacita" class="text-right"></span>
+                    <div class="encbfilcitas row mb-4">
+                        <h4>Búsqueda de Citas</h4>
+                        <div class="col-md-2 fecha-container">                           
+                            <label for="fechacita">Fecha: </label>
+                            <span id="fechacita" class="text-right"></span>
+                        </div>
+                    <!--SELECCIONAR: SELECCIONA UNA FILA DE LA GRILLA Y LLEVA LA INFORMACION -- BTN CANCELAR: REGRESA O CIERRA EL MODAL PARA REGRESAR AL ANTERIOR MODAL-->
+                        <div class="col-md-5">
+                            <button id="btnSeleccionar"  class="btn-accept" >Seleccionar</button>
+                            <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                        </div>
                     </div>
                     
-                    
                       <!-- Filtros -->
-                <form>
+                
                     <div class="form-row">
-                        <div class="grupos-busqueda">
+                        <div class="grupos-busqueda row mb-4">
 
                             <!-- Búsqueda de médicos -->
-                            <div class="busqueda-medicos">
+                            <div class="busqueda-medicos col-md-6">
                                 <label>Búsqueda de médicos:</label>
                                 <div class="radio-group">
                                     <label>
@@ -41,16 +48,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="codigoMedico">Código médico:</label>
-                                    <input type="text" id="codigoMedico" name="codigoMedico" disabled>
+                                    <input type="text" id="codigoMedico" name="codigoMedico"  onkeydown="if(event.key === 'Enter') buscarCitas()" >
                                 </div>
                                 <div class="form-group">
                                     <label for="especialidad">Especialidad:</label>
-                                    <input type="text" id="especialidad" name="especialidad" disabled>
+                                    <input type="text" id="especialidad" name="especialidad"  onkeydown="if(event.key === 'Enter') buscarCitas()" >
                                 </div>
                             </div>
                         
                             <!-- Búsqueda de pacientes -->
-                            <div class="busqueda-pacientes">
+                            <div class="busqueda-pacientes col-md-6">
                                 <label>Búsqueda de pacientes:</label>
                                 <div class="radio-group">
                                     <label>
@@ -62,7 +69,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="apellidosNombres">Apellidos y nombres:</label>
-                                    <input type="text" id="apellidosNombres" name="apellidosNombres" disabled>
+                                    <input type="text" id="apellidosNombres" name="apellidosNombres"  onkeydown="if(event.key === 'Enter') buscarCitas()"disabled>
                                 </div>
                             </div>
                         </div>
@@ -87,15 +94,12 @@
                     </table>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn-accept" onclick="selectRow()">Seleccionar</button>
-                <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-            </div>
+            
         </div>
     </div>
+    
+    <script src="../Modales/datospaciente.js"></script>
     <script src="../js/buscarCita.js"></script>    
     <script src="../js/fecha.js"></script> 
-
-    <script src="../Modales/datospaciente.js"></script>
 </body>
 </html>

@@ -212,3 +212,49 @@ button:hover {
     justify-content: space-between;
     gap: 10px;
 }
+
+.busqueda-pacientes .form-group{
+    width: 100%;
+    display: block;
+    font-size: 18px;
+    margin:20px 0;
+    
+}
+
+.busqueda-pacientes .form-group label{
+    width: 45%;
+}
+
+.busqueda-medicos .form-group label{
+    width: 35%;
+    
+}
+.encbfilcitas{
+    width: 100%;
+    justify-content:space-between;
+   
+
+}
+
+
+.fecha-container {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+}
+
+#fechacita {
+    margin-left: 5px; /* Ajusta el margen según sea necesario */
+}
+
+.encbfilcitas button{     
+    border-radius: 20px;
+    justify-content: center;
+    top: 0;
+    margin-right: 10%;
+    font-size: 20px;
+    color: black;
+    background-color: #5a62681f;
+   
+}
+

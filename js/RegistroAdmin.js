@@ -1,4 +1,3 @@
-
 function updateDateTime() {
     const now = new Date();
 
@@ -7,7 +6,10 @@ function updateDateTime() {
     document.getElementById('fecha').value = formattedDate;
 
     // Formatear la hora en formato HH:MM:SS
-    const formattedTime = now.toTimeString().split(' ')[0];
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
     document.getElementById('hora').value = formattedTime;
 }
 
@@ -16,6 +18,3 @@ setInterval(updateDateTime, 1000);
 
 // Llamar a la función para establecer los valores iniciales
 updateDateTime();
-
-/********************************* */
-
